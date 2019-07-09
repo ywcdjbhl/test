@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- commoooooooooment -->
+<!-- 
+	duohangzhushi
+ -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tims.teamflight.mapper.TourPreFlightStoreMapper" >
+
+	 <sql id="sql_tourPreFlightStoreInfo">
+	   t.id id,
+	   t.dept_code deptCode,
+	   t.arr_code arrCode,
+	   t.dept_date deptDate,
+	   t.dept_time deptTime,
+	   t.arr_date arrDate,
+	   t.arr_time arrTime,
+	   t.airco airco,
+	   t.flight_no flightNo,
+	   t.aircraft_style aircraftStyle,
+	   t.cabin cabin,
+	   t.price price,
+	   t.build_fee buildFee,
+	   t.oil_fee oilFee,
+	   t.total_num totalNum,
+	   t.create_time createTime,
+	   t.dept_airport_name deptAirportName,
+	   t.arr_airport_name arrAirportName,
+	   t.flight_id flightId, 
+       t.flight_type flightType,
+       t.chi_price chiPrice,
+       t.chi_build_fee chiBuildFee,
+       t.chi_oil_fee chiOilFee,
+       t.dept_flight_terminal deptFlightTerminal,
+       t.arr_flight_terminal  arrFlightTerminal 
+	</sql>
+
+	<select id="queryTourPreFlightStoreList" parameterType="com.tims.teamflight.domain.TourPreFlightStore" 
+		resultType="com.tims.teamflight.domain.TourPreFlightStore">
+		select 
+			<include refid="sql_tourPreFlightStoreInfo"/>
+		from teamflight_db.tour_pre_flight_store t 
+		where 1=1 
+	      <if test="deptCode != null and deptCode !='' ">
+	        and t.dept_code=#{deptCode}
+	      </if>
+	      <if test="arrCode != null and arrCode !='' ">
+	        and  t.arr_code=#{arrCode}
+	      </if>
+	      <if test="deptDate != null and deptDate !='' ">
+	        and  t.dept_date=#{deptDate}
+	      </if>
+	      <if test="deptTime != null and deptTime !='' ">
+	        and  t.dept_time=#{deptTime}
+	      </if>
+	      <if test="arrDate != null and arrDate !='' ">
+	        and t.arr_date=#{arrDate}
+	      </if>
+	      <if test="arrTime != null and arrTime !='' ">
+	         and t.arr_time=#{arrTime}
+	      </if>
+	      <if test="airco != null and airco !='' ">
+	        and t.airco=#{airco}
+	      </if>
+	      <if test="flightNo != null and flightNo !='' ">
+	        and  t.flight_no=#{flightNo}
+	      </if>
+	      <if test="aircraftStyle != null and aircraftStyle !='' ">
+	        and  t.aircraft_style=#{aircraftStyle}
+	      </if>
+	      <if test="cabin != null and cabin !='' ">
+	        and t.cabin=#{cabin}
+	      </if>
+	      <if test="price != null and price !='' ">
+	        and  t.price=#{price}
+	      </if>
+	      <if test="buildFee != null and buildFee !='' ">
+	        and  t.build_fee=#{buildFee}
+	      </if>
+	      <if test="oilFee != null and oilFee !='' ">
+	        and t.oil_fee=#{oilFee}
+	      </if>
+	      <if test="totalNum != null and totalNum !='' ">
+	       and  t.total_num=#{totalNum}
+	      </if>
+	      <if test="createTime != null and createTime !='' ">
+	       and  t.create_time=#{createTime}
+	      </if>
+	      <if test="deptAirportName != null and deptAirportName !='' ">
+	        and t.dept_airport_name=#{deptAirportName}
+	      </if>
+	      <if test="arrAirportName != null and arrAirportName !='' ">
+	        and t.arr_airport_name=#{arrAirportName}
+	      </if>
+	      <if test="flightId != null and flightId !='' ">
+	        and t.flight_id=#{flightId}
+	      </if>
+	      <if test="flightType != null and flightType !='' ">
+	        and t.flight_type=#{flightType}
+	      </if>
+	      <if test="chiPrice != null and chiPrice !='' ">
+	        and t.chi_price=#{chiPrice}
+	      </if>
+	      <if test="chiBuildFee != null and chiBuildFee !='' ">
+	        and t.chi_build_fee=#{chiBuildFee}
+	      </if>
+	      <if test="chiOilFee != null and chiOilFee !='' ">
+	        and t.chi_oil_fee=#{chiOilFee}
+	      </if>
+	      <if test="deptFlightTerminal != null and deptFlightTerminal !='' ">
+	        and t.dept_flight_terminal=#{deptFlightTerminal}
+	      </if>
+	      <if test="arrFlightTerminal != null and arrFlightTerminal !='' ">
+	        and t.arr_flight_terminal=#{arrFlightTerminal}
+	      </if>
+	      <if test="idList != null">
+	          <foreach collection="idList" item="item" index="index" open="AND t.id IN (" close=")" separator=",">
+				#{item}
+			</foreach>
+	      </if>
+	</select>	
+	<select id="queryTourPreFlightStoreById" parameterType="java.lang.Integer" resultType="com.tims.teamflight.domain.TourPreFlightStore">
+		select 
+		<include refid="sql_tourPreFlightStoreInfo"/>	
+		from teamflight_db.tour_pre_flight_store t 
+		<![CDATA[
+			where t.id=#{id}
+		]]>
+	</select>
+	
+	<insert id="insertTourPreFlightStore" parameterType="com.tims.teamflight.domain.TourPreFlightStore"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into teamflight_db.tour_pre_flight_store
+		  (id,dept_code,arr_code,dept_date,dept_time,arr_date,arr_time,airco,flight_no,aircraft_style,cabin,price,build_fee,oil_fee,total_num,create_time,dept_airport_name,arr_airport_name,flight_id, 
+           flight_type,chi_price,chi_build_fee,chi_oil_fee,dept_flight_terminal,arr_flight_terminal)
+		values
+		  (#{id}, #{deptCode}, #{arrCode}, #{deptDate}, #{deptTime}, #{arrDate},#{arrTime},#{airco},#{flightNo},#{aircraftStyle},#{cabin},#{price},#{buildFee},#{oilFee},#{totalNum},#{createTime},#{deptAirportName},#{arrAirportName},#{flightId},
+		  #{flightType}, #{chiPrice}, #{chiBuildFee}, #{chiOilFee}, #{deptFlightTerminal}, #{arrFlightTerminal})
+	</insert>
+	
+	    
+</mapper>

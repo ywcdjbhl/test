@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >  
+<sqlMap>  
+    <resultMap id="boyResultMap" class="com.you.bean.Boy" >  
+        <result property="id" column="id"/>  
+        <result property="name" column="name"/>  
+        <result property="girls" column="id" select="getGirlByBoy"/>
+    </resultMap>  
+    <resultMap id="boyResultMap2" class="com.you.bean.Boy" >  
+        <result property="id" column="id"/>  
+        <result property="name" column="name"/>  
+    </resultMap>  
+    <resultMap id="girlResultMap" class="com.you.bean.Girl" >  
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="boys" column="id" select="getBoyByGirl2"/>
+    </resultMap>  
+    <select id="getBoyByGirl" parameterClass="java.lang.String" resultMap="boyResultMap">  
+           select tb2.name,tb2.id from boy_girl_tb tb,boy_tb tb2 where tb2.id=tb.boy and tb.girl=#id#
+    </select>
+    <select id="getBoyByGirl2" parameterClass="java.lang.String" resultMap="boyResultMap2">  
+           select tb2.name,tb2.id from boy_girl_tb tb,boy_tb tb2 where tb2.id=tb.boy and tb.girl=#id#
+    </select>
+    <select id="getGirlByBoy" parameterClass="java.lang.String" resultMap="girlResultMap">  
+           select tb2.name,tb2.id from boy_girl_tb tb,girl_tb tb2 where tb2.id=tb.girl and tb.boy=#id#
+    </select>
+    <select id="getAllBoy" resultMap="boyResultMap">
+    		select id,name from boy_tb
+    </select>
+</sqlMap>  

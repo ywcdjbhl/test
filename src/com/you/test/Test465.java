@@ -1,0 +1,55 @@
+package com.you.test;
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.reflect.Field;
+public class Test465 {
+    public static void main(String[] args) throws Exception {
+        List list = new ArrayList(11);
+        Class clazz = list.getClass();
+        Field field = clazz.getDeclaredField("elementData");
+        field.setAccessible(true);
+        Object object = field.get(list);
+        System.err.println(object);
+        Object object0 = field.get(list);
+        list.add(8);
+        Object object1 = field.get(list);
+        System.err.println(object0 == object1);
+        list.add(9);
+        Object object2 = field.get(list);
+        System.err.println(object1 == object2);
+        list.add("  ");
+        Object object3 = field.get(list);
+        System.err.println(object2 == object3);
+        list.add(new Test465());
+        Object object4 = field.get(list);
+        System.err.println(object3 == object4);
+        list.add("-");
+        Object object5 = field.get(list);
+        System.err.println(object4 == object5);
+        list.add(".");
+        Object object6 = field.get(list);
+        System.err.println(object5 == object6);
+        list.add(">");
+        Object object7 = field.get(list);
+        System.err.println(object6 == object7);
+        list.add("9");
+        Object object8 = field.get(list);
+        System.err.println(object7 == object8);
+        list.add("`");
+        Object object9 = field.get(list);
+        System.err.println(object8 == object9);
+        list.add("uu");
+        Object object10 = field.get(list);
+        System.err.println(object9 == object10);
+        list.add("bb");
+        Object object11 = field.get(list);
+        System.err.println(object10 == object11);
+        System.err.println("---------");
+        list.add("yy");
+        Object object12 = field.get(list);
+        System.err.println(object11 == object12);
+        list.add("qq");
+        Object object13 = field.get(list);
+        System.err.println(object12 == object13);
+    }
+}

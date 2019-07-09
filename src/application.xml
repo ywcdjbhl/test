@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="student" class="com.you.test.Test170Student" >
+		<property name="name" value="Hover"/>
+		<property name="address" value="雍和宫"></property>		
+	</bean>
+	<bean id="studentservice" class="com.you.test.Test170StudentService">
+		<property name="student" ref="student"/>
+	</bean>
+	<listener></listener>
+</beans>

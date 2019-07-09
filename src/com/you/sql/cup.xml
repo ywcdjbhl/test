@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >  
+<sqlMap>  
+    <typeAlias alias="Cup" type="com.you.bean.Cup"/>  
+    <resultMap id="cupResultMap" class="com.you.bean.Cup" >  
+        <result property="cupId" column="cup_id"/>  
+        <result property="cupPrice" column="cup_price"/>  
+    </resultMap>  
+    <select id="select" resultMap="cupResultMap">  
+           select cup_id,cup_price from cup_tb
+    </select>
+    <insert id="insert" parameterClass="com.you.bean.Cup">  
+           insert into cup_tb values (#cupId#,#cupPrice#)
+    </insert>
+</sqlMap>  

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >  
+<sqlMap>  
+    <typeAlias alias="Lock" type="com.you.bean.Lock"/>  
+    <typeAlias alias="Key" type="com.you.bean.Key"/>  
+    <resultMap id="lockResultMap" class="com.you.bean.Lock" >  
+        <result property="id" column="id"/>  
+        <result property="keys" column="id" select="getKeysByLock"/>
+    </resultMap>  
+    <resultMap id="keyResultMap" class="com.you.bean.Key" >  
+        <result property="id" column="id"/>  
+    </resultMap>  
+    <resultMap id="keyResultMap2" class="com.you.bean.Key" >  
+        <result property="id" column="id"/>  
+        <result property="other" column="other" select="getLockByKey"/>  
+    </resultMap>  
+    <select id="getKeysByLock" parameterClass="java.lang.String" resultMap="keyResultMap">  
+           select id from key_tb where other=#id#
+    </select>
+    <select id="getLockByKey" parameterClass="java.lang.String" resultMap="lockResultMap">  
+           select id from lock_tb where id=#id#
+    </select>
+    <select id="getAllLock" resultMap="lockResultMap">
+    		select id from lock_tb
+    </select>
+    <select id="getAllKey" resultMap="keyResultMap2">
+    		select id,other from key_tb
+    </select>
+</sqlMap>  
