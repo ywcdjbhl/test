@@ -13,5 +13,9 @@ public class Test584 {
         Float f = new Float(7);
         boolean flag2 = clazz2.isInstance(f);
         System.err.println(flag2);
+        boolean flag3 = clazz.isInstance(null);
+        System.err.println(flag3);
+        boolean flag4 = clazz2.isInstance(null);
+        System.err.println(flag4);
     }
 }
