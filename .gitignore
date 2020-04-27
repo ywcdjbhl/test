@@ -1,6 +1,6 @@
 logs/
 target/
 out/
-.idea
+.idea/
 src/main/resources
 *iml
