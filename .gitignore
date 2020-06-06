@@ -2,5 +2,5 @@ logs/
 target/
 out/
 .idea
-src/main/resources
+
 *iml
